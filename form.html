@@ -95,5 +95,25 @@
     </form>
   </div>
   <script src="form.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const userId = localStorage.getItem("user_id");
+      if (!userId) return;
+
+      fetch("https://script.google.com/macros/s/AKfycbxvn85zSKNF1eXKJBbdXen4l0Cc2G2S8jLSjL2UHykW24rEhtLyYl1SzHHLEejzidDebA/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `id=${userId}`
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("name-display").textContent = data.name || "未登録";
+        document.querySelector("input[name='department']").value = data.department || "";
+      })
+      .catch(err => {
+        console.error("取得エラー:", err);
+      });
+    });
+  </script>
 </body>
 </html>
