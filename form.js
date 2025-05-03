@@ -33,7 +33,10 @@ document.getElementById("request-form").addEventListener("submit", function(e) {
   for (let element of form.elements) {
     if (element.name) {
       if (element.type === "checkbox") {
-        data[element.name] = element.checked;
+        // チェックボックスで name に [] が付いているものを配列として収集
+        const baseName = element.name.replace(/\[\]$/, "");
+        if (!data[baseName]) data[baseName] = [];
+        if (element.checked) data[baseName].push(element.value);
       } else {
         data[element.name] = element.value;
       }
