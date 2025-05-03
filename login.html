@@ -3,17 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <title>ログイン - 出張申請システム</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #eef2f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background: #fff;
+      padding: 2em 3em;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    label {
+      display: block;
+      margin-top: 1.5em;
+      font-weight: bold;
+      color: #34495e;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 0.7em;
+      margin-top: 0.5em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 2em;
+      width: 100%;
+      padding: 0.8em;
+      background-color: #007bff;
+      color: white;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #error {
+      color: red;
+      text-align: center;
+      margin-top: 1em;
+    }
+  </style>
 </head>
 <body>
-  <h1>ログイン</h1>
-  <form id="login-form">
-    <label>給与番号：<input name="id" required /></label><br />
-    <label>共通パスワード：<input type="password" name="password" required /></label><br />
-    <button type="submit">ログイン</button>
-  </form>
-  <p id="error" style="color:red;"></p>
-
+  <div class="login-container">
+    <h1>ログイン</h1>
+    <form id="login-form">
+      <label>給与番号：<input type="text" name="id" required /></label>
+      <label>共通パスワード：<input type="password" name="password" required /></label>
+      <button type="submit">ログイン</button>
+    </form>
+    <p id="error"></p>
+  </div>
   <script src="login.js"></script>
 </body>
 </html>
