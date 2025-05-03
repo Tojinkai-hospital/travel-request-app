@@ -38,6 +38,11 @@
       border-radius: 6px;
       box-sizing: border-box;
     }
+    .input-field[readonly] {
+      background-color: #f5f5f5;
+      color: #333;
+      cursor: not-allowed;
+    }
     .input-area {
       height: 3em;
       resize: vertical;
@@ -63,7 +68,9 @@
   <div class="container">
     <h2>出張申請フォーム</h2>
     <form id="request-form">
-      <label>氏名（自動表示）：<span id="name-display">読み込み中...</span></label>
+      <label>氏名（自動表示）：
+        <input type="text" class="input-field" id="name-display" readonly>
+      </label>
       <label>所属：<input type="text" name="department" class="input-field" required></label>
       <label>目的：<textarea name="purpose" class="input-area" required></textarea></label>
       <label>出張地：<input type="text" name="location" class="input-field" required></label>
@@ -95,25 +102,5 @@
     </form>
   </div>
   <script src="form.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const userId = localStorage.getItem("user_id");
-      if (!userId) return;
-
-      fetch("https://script.google.com/macros/s/AKfycbxvn85zSKNF1eXKJBbdXen4l0Cc2G2S8jLSjL2UHykW24rEhtLyYl1SzHHLEejzidDebA/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `id=${userId}`
-      })
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("name-display").textContent = data.name || "未登録";
-        document.querySelector("input[name='department']").value = data.department || "";
-      })
-      .catch(err => {
-        console.error("取得エラー:", err);
-      });
-    });
-  </script>
 </body>
 </html>
