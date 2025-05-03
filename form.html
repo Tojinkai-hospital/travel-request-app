@@ -103,7 +103,12 @@
           <option value="オンライン">オンライン</option>
         </select>
       </label>
-      <label>参加費（円）：<input type="text" name="fee" class="input-field" pattern="[0-9]*" required></label>
+      <label>参加費（円）：
+        <input type="text" name="fee" class="input-field" 
+         pattern="[0-9]*" required 
+         oninvalid="this.setCustomValidity('半角数字で入力してください')" 
+         oninput="this.setCustomValidity('')">
+      </label>
       <label>交通経路：<input type="text" name="transport" class="input-field"></label>
       <label>宿泊あり：<input type="checkbox" name="stay"></label>
       <label>チェックイン日：<input type="date" name="checkin" class="input-field"></label>
