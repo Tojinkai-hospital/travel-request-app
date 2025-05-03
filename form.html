@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>出張申請フォーム</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>出張申請フォーム</h2>
+  <form id="request-form">
+    <label>氏名：<input type="text" name="name" required></label><br>
+    <label>所属：<input type="text" name="department" required></label><br>
+    <label>目的：<textarea name="purpose" required></textarea></label><br>
+    <label>出張地：<input type="text" name="location" required></label><br>
+    <label>出張開始日：<input type="date" name="start_date" required></label><br>
+    <label>出張終了日：<input type="date" name="end_date" required></label><br>
+    <label>出張区分：
+      <select name="category">
+        <option value="国内">国内</option>
+        <option value="海外">海外</option>
+      </select>
+    </label><br>
+    <label>参加方式：
+      <select name="method">
+        <option value="現地">現地</option>
+        <option value="オンライン">オンライン</option>
+      </select>
+    </label><br>
+    <label>参加費（円）：<input type="number" name="fee"></label><br>
+    <label>交通経路：<input type="text" name="transport"></label><br>
+    <label>宿泊あり：<input type="checkbox" name="stay"></label><br>
+    <label>チェックイン日：<input type="date" name="checkin"></label><br>
+    <label>チェックアウト日：<input type="date" name="checkout"></label><br>
+    <label>宿泊施設名：<input type="text" name="hotel"></label><br>
+    <label>備考：<textarea name="note"></textarea></label><br>
+    <button type="submit">送信</button>
+  </form>
+
+  <script src="form.js"></script>
+</body>
+</html>
