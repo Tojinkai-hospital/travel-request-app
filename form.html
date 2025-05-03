@@ -76,15 +76,15 @@
       <label>出張地：<input type="text" name="location" class="input-field" required></label>
       <label>出張開始日：<input type="date" name="start_date" class="input-field" required></label>
       <label>出張終了日：<input type="date" name="end_date" class="input-field" required></label>
-      <label>出張区分：
-        <select name="category" class="input-field">
-          <option value="参加（聴講のみ）">参加（聴講のみ）</option>
-          <option value="発表">発表</option>
-          <option value="講演">講演</option>
-          <option value="司会・座長">司会・座長</option>
-          <option value="その他">その他（記述形式）</option>
-        </select>
-      </label>
+      <label>出張区分：</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="category[]" value="参加（聴講のみ）"> 参加（聴講のみ）</label><br>
+        <label><input type="checkbox" name="category[]" value="発表"> 発表</label><br>
+        <label><input type="checkbox" name="category[]" value="講演"> 講演</label><br>
+        <label><input type="checkbox" name="category[]" value="司会・座長"> 司会・座長</label><br>
+        <label><input type="checkbox" name="category[]" value="その他"> その他（記述形式）</label>
+      </div>
+
       <label>参加方式：
         <select name="method" class="input-field">
           <option value="現地">現地</option>
