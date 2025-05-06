@@ -36,7 +36,7 @@ document.getElementById("request-form").addEventListener("submit", async functio
   formData.set("user_id", userId);
 
   try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbwyFes-i0FC8DMhwfbpDsSHPYY3z4MB-2ZdaEL-gJgpYMIPW5413FFyYLjBuz7CyaBm/exec", {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbztwRN0T341BfKMccchvYXXiAaYLz-lzopU5XRD3MZEJwSpb9yI9MMiKB9XVyXajD2B/exec", {
       method: "POST",
       body: formData
     });
