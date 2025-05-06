@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>出張申請フォーム</title>
-  <link rel="stylesheet" href="style.css">
   <style>
     body {
       font-family: "Segoe UI", sans-serif;
@@ -29,7 +28,7 @@
       font-weight: bold;
       color: #34495e;
     }
-    .input-field, .input-area, select {
+    .input-field, .input-area {
       width: 100%;
       padding: 0.75em;
       margin-top: 0.5em;
@@ -38,14 +37,12 @@
       border-radius: 6px;
       box-sizing: border-box;
     }
-    .input-field[readonly] {
-      background-color: #f5f5f5;
-      color: #333;
-      cursor: not-allowed;
-    }
-    .input-area {
-      height: 3em;
-      resize: vertical;
+    .checkbox-group {
+      background: #f9f9f9;
+      padding: 1em;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 0.5em;
     }
     .submit-btn {
       margin-top: 2.5em;
@@ -62,38 +59,32 @@
     .submit-btn:hover {
       background-color: #0056b3;
     }
-    .checkbox-group {
-      padding: 1em;
-      background-color: #f9f9f9;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      margin-top: 0.5em;
-    }
-    .checkbox-group label {
-      display: block;
-      margin-bottom: 0.4em;
-      font-weight: normal;
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <h2>出張申請フォーム</h2>
-    <form id="request-form">
+    <form id="request-form" action="https://script.google.com/macros/s/AKfycbyeU7W7r5MbDOzJg1annd-sZj2JiDmBPqSACKqVoTZMOf01Fii9r-m0mNtTA-8BSKY/exec"
+          method="POST" enctype="multipart/form-data" target="hidden_iframe">
+      
+      <input type="hidden" name="user_id" id="user-id-hidden">
+
       <label>氏名（自動表示）：
         <input type="text" class="input-field" id="name-display" readonly>
       </label>
+
       <label>所属：<input type="text" name="department" class="input-field" required></label>
       <label>目的：<textarea name="purpose" class="input-area" required></textarea></label>
       <label>出張地：<input type="text" name="location" class="input-field" required></label>
       <label>出張開始日：<input type="date" name="start_date" class="input-field" required></label>
       <label>出張終了日：<input type="date" name="end_date" class="input-field" required></label>
+
       <label>出張区分：</label>
       <div class="checkbox-group">
-        <label><input type="checkbox" name="category[]" value="参加（聴講のみ）"> 参加（聴講のみ）</label><br>
-        <label><input type="checkbox" name="category[]" value="発表"> 発表</label><br>
-        <label><input type="checkbox" name="category[]" value="講演"> 講演</label><br>
-        <label><input type="checkbox" name="category[]" value="司会・座長"> 司会・座長</label><br>
+        <label><input type="checkbox" name="category[]" value="参加（聴講のみ）"> 参加（聴講のみ）</label>
+        <label><input type="checkbox" name="category[]" value="発表"> 発表</label>
+        <label><input type="checkbox" name="category[]" value="講演"> 講演</label>
+        <label><input type="checkbox" name="category[]" value="司会・座長"> 司会・座長</label>
         <label><input type="checkbox" name="category[]" value="その他"> その他（記述形式）</label>
       </div>
 
@@ -103,22 +94,29 @@
           <option value="オンライン">オンライン</option>
         </select>
       </label>
-      <label>参加費（円）：（半角数字で入力してください）
-        <input type="text" name="fee" class="input-field" 
-         pattern="[0-9]*" required 
-         oninvalid="this.setCustomValidity('半角数字で入力してください')" 
-         oninput="this.setCustomValidity('')">
+
+      <label>参加費（円）：
+        <input type="text" name="fee" class="input-field" pattern="[0-9]*" required
+               oninvalid="this.setCustomValidity('半角数字で入力してください')"
+               oninput="this.setCustomValidity('')">
       </label>
+
       <label>交通経路：<input type="text" name="transport" class="input-field"></label>
       <label>宿泊あり：<input type="checkbox" name="stay"></label>
       <label>チェックイン日：<input type="date" name="checkin" class="input-field"></label>
       <label>チェックアウト日：<input type="date" name="checkout" class="input-field"></label>
       <label>宿泊施設名：<input type="text" name="hotel" class="input-field"></label>
-      <label>添付書類：<input type="file" name="attachment" class="input-field" multiple></label>
+
+      <label>添付書類：<input type="file" name="files" class="input-field" multiple></label>
       <label>備考：<textarea name="note" class="input-area"></textarea></label>
+
       <button type="submit" class="submit-btn">送信</button>
     </form>
+
+    <!-- hidden iframe for submission -->
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="onFormSent()"></iframe>
   </div>
+
   <script src="form.js"></script>
 </body>
 </html>
