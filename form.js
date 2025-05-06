@@ -1,4 +1,4 @@
-// フォーム読み込み時：氏名・所属を GAS 経由で取得
+// ===== 1. 職員情報の取得 =====
 window.addEventListener("DOMContentLoaded", () => {
   const userId = localStorage.getItem("user_id");
 
@@ -24,16 +24,21 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// フォーム送信時：iframe 経由でGASにPOST（CORS回避）
+// ===== 2. 送信処理（iframe経由・状態管理付き） =====
+let submissionInProgress = false;
+
 document.getElementById("request-form").addEventListener("submit", function (e) {
   const userId = localStorage.getItem("user_id") || "未ログイン";
   document.getElementById("user-id-hidden").value = userId;
 
-  // 通信完了を検知するための監視処理
-  const iframe = document.getElementById("hidden_iframe");
-  iframe.onload = function () {
-    alert("✅ 申請が送信されました！");
-    e.target.reset();
-    iframe.onload = null; // 重複防止
-  };
+  submissionInProgress = true;
 });
+
+// ===== 3. iframeで送信完了を検知 =====
+document.getElementById("hidden_iframe").onload = function () {
+  if (submissionInProgress) {
+    alert("✅ 申請が送信されました！");
+    document.getElementById("request-form").reset();
+    submissionInProgress = false;
+  }
+};
