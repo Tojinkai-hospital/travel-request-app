@@ -7,7 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  fetch("https://script.google.com/macros/s/AKfycbybThFx-6BDyAMY6SdRc-2QVtCpLuDH3iA8Glirft1EptgYdABqER8ESqvMtBHQ3hPG/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbxtMugJd-xzSto6mMtINRSYtbfG7g6l6i10EoWvHSkVmp4_BrBSjHPZAd_uqO9Khamu/exec", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded"
@@ -36,7 +36,7 @@ document.getElementById("request-form").addEventListener("submit", async functio
   formData.set("user_id", userId);
 
   try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbxbTA8qdimwfRCfe7Xo9pUKEB9AZXQC8TsyiwG5xdVDDYr1qOSvNyT6cWSCIQDFd-C7/exec", {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbyZpaEvrK8JBgo-LE_kFUX_o5Bi1-VoEI0dZAz--yY39lGiwiojvkEgjVbW8VPqh1U/exec", {
       method: "POST",
       body: formData
     });
