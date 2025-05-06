@@ -64,9 +64,8 @@
 <body>
   <div class="container">
     <h2>出張申請フォーム</h2>
-    <form id="request-form">
-
-      <!-- ユーザーID（ローカルストレージから自動取得） -->
+    <form id="request-form" enctype="multipart/form-data">
+      <!-- 🔑 自動補完フィールド -->
       <input type="hidden" name="user_id" id="user-id-hidden">
 
       <label>氏名（自動表示）：
@@ -148,7 +147,7 @@
     </form>
   </div>
 
-  <!-- JSスクリプト -->
+  <!-- ロジック部分 -->
   <script src="form.js"></script>
 </body>
 </html>
