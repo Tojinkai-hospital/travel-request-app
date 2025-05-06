@@ -24,28 +24,28 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// フォーム送信時：FormDataを使って送信（ファイル添付対応）
+// フォーム送信時：FormData を使って GAS にPOST（ファイル付き）
 document.getElementById("request-form").addEventListener("submit", function (e) {
   e.preventDefault();
 
   const form = e.target;
-  const formData = new FormData(form); // フォーム要素全体をFormDataに変換
+  const formData = new FormData(form);
 
-  // ログインユーザーIDを追加（localStorageから）
+  // ログインユーザーIDを付加
   formData.append("user_id", localStorage.getItem("user_id") || "未ログイン");
 
-  // Google Apps Scriptへ送信
-  fetch("https://script.google.com/macros/s/＜ここに本番GASのURL＞/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbyeU7W7r5MbDOzJg1annd-sZj2JiDmBPqSACKqVoTZMOf01Fii9r-m0mNtTA-8BSKY/exec", {
     method: "POST",
-    body: formData,
+    body: formData
   })
-    .then((res) => res.json())
-    .then((result) => {
-      console.log("GASからの応答:", result);
-      alert("✅ 申請が送信されました！");
+    .then(res => res.json())
+    .then(data => {
+      console.log("📦 GAS応答:", data);
+      alert("✅ 申請が送信されました！申請ID: " + data.id);
+      form.reset(); // 入力リセット
     })
-    .catch((err) => {
-      console.error("送信エラー:", err);
-      alert("❌ 送信中にエラーが発生しました");
+    .catch(err => {
+      console.error("❌ 送信エラー:", err);
+      alert("送信に失敗しました。GASのURLやネットワークを確認してください。");
     });
 });
