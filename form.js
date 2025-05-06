@@ -7,7 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  fetch("https://script.google.com/macros/s/AKfycbxtMugJd-xzSto6mMtINRSYtbfG7g6l6i10EoWvHSkVmp4_BrBSjHPZAd_uqO9Khamu/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbzIiymkLd-xEGqaHOXUwGd2EEvuPNMEkyaQF2GKxCy0Ie0zTbOe3T_SZRKf2riDSXY/exec", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded"
