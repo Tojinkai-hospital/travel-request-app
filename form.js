@@ -24,27 +24,28 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// フォーム送信時：全データをまとめてコンソールに出力（仮送信）
-document.getElementById("request-form").addEventListener("submit", function(e) {
+// フォーム送信時：FormDataを使って送信（ファイル添付対応）
+document.getElementById("request-form").addEventListener("submit", function (e) {
   e.preventDefault();
-  const data = {};
+
   const form = e.target;
+  const formData = new FormData(form); // フォーム要素全体をFormDataに変換
 
-  for (let element of form.elements) {
-    if (element.name) {
-      if (element.type === "checkbox") {
-        // チェックボックスで name に [] が付いているものを配列として収集
-        const baseName = element.name.replace(/\[\]$/, "");
-        if (!data[baseName]) data[baseName] = [];
-        if (element.checked) data[baseName].push(element.value);
-      } else {
-        data[element.name] = element.value;
-      }
-    }
-  }
+  // ログインユーザーIDを追加（localStorageから）
+  formData.append("user_id", localStorage.getItem("user_id") || "未ログイン");
 
-  data["user_id"] = localStorage.getItem("user_id") || "未ログイン";
-
-  console.log("申請データ：", data);
-  alert("✅ 申請データをコンソールに出力しました（仮送信）");
+  // Google Apps Scriptへ送信
+  fetch("https://script.google.com/macros/s/＜ここに本番GASのURL＞/exec", {
+    method: "POST",
+    body: formData,
+  })
+    .then((res) => res.json())
+    .then((result) => {
+      console.log("GASからの応答:", result);
+      alert("✅ 申請が送信されました！");
+    })
+    .catch((err) => {
+      console.error("送信エラー:", err);
+      alert("❌ 送信中にエラーが発生しました");
+    });
 });
