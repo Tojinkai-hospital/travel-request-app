@@ -24,28 +24,16 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// フォーム送信時：FormData を使って GAS にPOST（ファイル付き）
+// フォーム送信時：iframe 経由でGASにPOST（CORS回避）
 document.getElementById("request-form").addEventListener("submit", function (e) {
-  e.preventDefault();
+  const userId = localStorage.getItem("user_id") || "未ログイン";
+  document.getElementById("user-id-hidden").value = userId;
 
-  const form = e.target;
-  const formData = new FormData(form);
-
-  // ログインユーザーIDを付加
-  formData.append("user_id", localStorage.getItem("user_id") || "未ログイン");
-
-  fetch("https://script.google.com/macros/s/AKfycbzIiymkLd-xEGqaHOXUwGd2EEvuPNMEkyaQF2GKxCy0Ie0zTbOe3T_SZRKf2riDSXY/exec", {
-    method: "POST",
-    body: formData
-  })
-    .then(res => res.json())
-    .then(data => {
-      console.log("📦 GAS応答:", data);
-      alert("✅ 申請が送信されました！申請ID: " + data.id);
-      form.reset(); // 入力リセット
-    })
-    .catch(err => {
-      console.error("❌ 送信エラー:", err);
-      alert("送信に失敗しました。GASのURLやネットワークを確認してください。");
-    });
+  // 通信完了を検知するための監視処理
+  const iframe = document.getElementById("hidden_iframe");
+  iframe.onload = function () {
+    alert("✅ 申請が送信されました！");
+    e.target.reset();
+    iframe.onload = null; // 重複防止
+  };
 });
