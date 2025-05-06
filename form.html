@@ -64,18 +64,34 @@
 <body>
   <div class="container">
     <h2>出張申請フォーム</h2>
-    <form id="request-form" enctype="multipart/form-data">
+    <form id="request-form">
+
+      <!-- ユーザーID（ローカルストレージから自動取得） -->
       <input type="hidden" name="user_id" id="user-id-hidden">
 
       <label>氏名（自動表示）：
         <input type="text" class="input-field" id="name-display" readonly>
       </label>
 
-      <label>所属：<input type="text" name="department" class="input-field" required></label>
-      <label>目的：<textarea name="purpose" class="input-area" required></textarea></label>
-      <label>出張地：<input type="text" name="location" class="input-field" required></label>
-      <label>出張開始日：<input type="date" name="start_date" class="input-field" required></label>
-      <label>出張終了日：<input type="date" name="end_date" class="input-field" required></label>
+      <label>所属：
+        <input type="text" name="department" class="input-field" required>
+      </label>
+
+      <label>目的：
+        <textarea name="purpose" class="input-area" required></textarea>
+      </label>
+
+      <label>出張地：
+        <input type="text" name="location" class="input-field" required>
+      </label>
+
+      <label>出張開始日：
+        <input type="date" name="start_date" class="input-field" required>
+      </label>
+
+      <label>出張終了日：
+        <input type="date" name="end_date" class="input-field" required>
+      </label>
 
       <label>出張区分：</label>
       <div class="checkbox-group">
@@ -99,23 +115,40 @@
                oninput="this.setCustomValidity('')">
       </label>
 
-      <label>交通経路：<input type="text" name="transport" class="input-field"></label>
-      <label>宿泊あり：<input type="checkbox" name="stay"></label>
-      <label>チェックイン日：<input type="date" name="checkin" class="input-field"></label>
-      <label>チェックアウト日：<input type="date" name="checkout" class="input-field"></label>
-      <label>宿泊施設名：<input type="text" name="hotel" class="input-field"></label>
+      <label>交通経路：
+        <input type="text" name="transport" class="input-field">
+      </label>
+
+      <label>宿泊あり：
+        <input type="checkbox" name="stay">
+      </label>
+
+      <label>チェックイン日：
+        <input type="date" name="checkin" class="input-field">
+      </label>
+
+      <label>チェックアウト日：
+        <input type="date" name="checkout" class="input-field">
+      </label>
+
+      <label>宿泊施設名：
+        <input type="text" name="hotel" class="input-field">
+      </label>
 
       <label>添付書類（最大3件まで）：</label>
       <input type="file" name="file1" class="input-field"><br>
       <input type="file" name="file2" class="input-field"><br>
       <input type="file" name="file3" class="input-field">
 
-      <label>備考：<textarea name="note" class="input-area"></textarea></label>
+      <label>備考：
+        <textarea name="note" class="input-area"></textarea>
+      </label>
 
       <button type="submit" class="submit-btn">送信</button>
     </form>
   </div>
 
+  <!-- JSスクリプト -->
   <script src="form.js"></script>
 </body>
 </html>
