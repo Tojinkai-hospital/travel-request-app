@@ -110,27 +110,25 @@
       <label>チェックアウト日：<input type="date" name="checkout" class="input-field"></label>
       <label>宿泊施設名：<input type="text" name="hotel" class="input-field"></label>
 
-      <label>添付書類：<input type="file" name="files" class="input-field" multiple></label>
+      <label>添付書類（最大3件まで）：</label>
+      <input type="file" name="file1" class="input-field"><br>
+      <input type="file" name="file2" class="input-field"><br>
+      <input type="file" name="file3" class="input-field">
+
       <label>備考：<textarea name="note" class="input-area"></textarea></label>
 
       <button type="submit" class="submit-btn">送信</button>
     </form>
 
-    <!-- hidden iframe for CORS回避 -->
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
   </div>
 
-  <!-- 職員マスタから氏名・部署取得用スクリプト -->
   <script src="form.js"></script>
-
-  <!-- 送信完了メッセージ -->
   <script>
     function onFormSent() {
       alert("✅ 申請が送信されました！");
       document.getElementById("request-form").reset();
     }
-
-    // iframe読み込み時に送信成功とみなす（form.jsが使っていない場合のみ必要）
     document.getElementById("hidden_iframe").onload = onFormSent;
   </script>
 </body>
