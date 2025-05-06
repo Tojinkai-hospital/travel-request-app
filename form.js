@@ -7,7 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  fetch("https://https://script.google.com/macros/s/AKfycbzIiymkLd-xEGqaHOXUwGd2EEvuPNMEkyaQF2GKxCy0Ie0zTbOe3T_SZRKf2riDSXY/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbxtMugJd-xzSto6mMtINRSYtbfG7g6l6i10EoWvHSkVmp4_BrBSjHPZAd_uqO9Khamu/exec", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded"
@@ -34,7 +34,7 @@ document.getElementById("request-form").addEventListener("submit", function (e) 
   // ログインユーザーIDを付加
   formData.append("user_id", localStorage.getItem("user_id") || "未ログイン");
 
-  fetch("https://script.google.com/macros/s/AKfycbyeU7W7r5MbDOzJg1annd-sZj2JiDmBPqSACKqVoTZMOf01Fii9r-m0mNtTA-8BSKY/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbzIiymkLd-xEGqaHOXUwGd2EEvuPNMEkyaQF2GKxCy0Ie0zTbOe3T_SZRKf2riDSXY/exec", {
     method: "POST",
     body: formData
   })
